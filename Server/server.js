@@ -4,15 +4,16 @@ const app = express();
 const data = require('./Data_Access/data')
 //Data Initalization
 
-var DataAccess = new data.Data();
+var DataAccess = new data.myData.getInstance();
 
 
 app.get("/api", (req, res) => {
     res.json({ message: "Hello from server!"});
 });
 
-app.get("/product", (req, res) => {
-    res.json({ message: "You got a product"});
+app.get("/product/:product_id", (req, res) => {
+    
+    res.json({ message: `You got a product with Product ID: + ${req.params.product_id}`});
 });
 
 app.listen(PORT,()=> {
