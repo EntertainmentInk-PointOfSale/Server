@@ -10,6 +10,7 @@
 # Dec - 15 Update
 - Instructions for building anywhere with MySQL
   - Can I make deploy script?
+- Add logging engine to server
 - Make base react page for testing products
   - Make sure products can be shown. (Need method to get specific product from DB)
 - Make
