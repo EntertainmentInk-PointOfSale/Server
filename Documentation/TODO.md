@@ -5,3 +5,11 @@
 - Implement login system to ensure safe operations
 - Create report generation 
 - Implement open/closing procedures as well as cash counting to remove paper operations
+
+
+# Dec - 15 Update
+- Instructions for building anywhere with MySQL
+  - Can I make deploy script?
+- Make base react page for testing products
+  - Make sure products can be shown. (Need method to get specific product from DB)
+- Make

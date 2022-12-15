@@ -6,7 +6,8 @@ var queries = require('./Queries/creation_queries.json')
 var myData = (function() {
     'use strict';
 
-    var instance, _pool;
+    var instance;
+    var _pool = null;
 
     var _con = mysql.createConnection({
         host : "localhost",
