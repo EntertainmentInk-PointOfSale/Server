@@ -19,7 +19,12 @@
   },
   "homepage": "https://github.com/calmacleod/Retail_PointOfSale#readme",
   "dependencies": {
+    "awesome-typescript-loader": "^5.2.1",
     "express": "^4.18.1",
-    "mysql2": "^2.3.3"
+    "mysql2": "^2.3.3",
+    "source-map-loader": "^4.0.1"
+  },
+  "devDependencies": {
+    "typescipt": "^1.0.0"
   }
 }
