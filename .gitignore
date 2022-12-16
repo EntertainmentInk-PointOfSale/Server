@@ -131,4 +131,5 @@ dist
 
 
 #Other
-credentials.json
+src/credentials.json
+build/*
