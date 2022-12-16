@@ -16,8 +16,7 @@ export class TaxAccess {
         return new Promise<ITax[]>((resolve,reject) => {
             this.pool.query<ITax[]>(`SELECT * FROM tax`, (err,res) => {
                 if(err) reject(err);
-                console.log(res)
-                resolve(res);
+                else resolve(res);
             })
         }) 
     }
