@@ -1,12 +1,15 @@
 {
     "compilerOptions": {
-        "outDir": "./out",
+        "outDir": "./build",
         "allowJs": true,
         "target": "es5",
+        "lib": ["es6"],
         "forceConsistentCasingInFileNames": true,
-        "strict": true
-    },
-        "include": [
-        "./Server/**/*"
-    ]
+        "strict": true,
+        "rootDir": "src",
+        "module": "CommonJS",
+        "esModuleInterop": true,
+        "noImplicitAny": true,
+        "resolveJsonModule": true
+    }
 }

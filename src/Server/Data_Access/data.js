@@ -21,10 +21,8 @@ var myData = (function() {
                 console.log('err ' + err.stack);
                 return;
             }
-
-            console.log("Connected " + _con)
-
-            console.log('Connected as id ' + _con.threadId);
+            
+            console.log('Connected as id ' + _con.connectionId);
         })
 
         _con.query(queries.create_db, function(error, results, fields) {
