@@ -1,6 +1,10 @@
+//@ts-nocheck
+
 var mysql = require('mysql2');
 var data =  require('../../credentials.json');
+const { TaxAccess } = require('./ModelAccess/TaxAccess');
 var queries = require('./Queries/creation_queries.json')
+
 
 //Data Singleton
 var myData = (function() {
@@ -103,7 +107,9 @@ var myData = (function() {
 
 myData.getInstance();
 
-module.exports = {myData}
+const tax:TaxDB = new TaxAccess(myData.getPool())
+
+module.exports = {myData,tax}
 
 
 
