@@ -16,7 +16,6 @@ export class StockCategoryAccess {
             this.pool.query<IStockCategory[]>(`SELECT * FROM stock_category`, (err,res) => {
                 if(err) reject(err);
                 else {
-                    console.log(res);
                     resolve(res);
                 }
             })
