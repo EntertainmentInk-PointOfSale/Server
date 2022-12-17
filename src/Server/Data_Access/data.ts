@@ -1,5 +1,8 @@
 //@ts-nocheck
 
+import { StockCategoryAccess } from "./ModelAccess/StockCategoryAccess";
+import { StockCategoryDB } from "./ModelDBs/StockCategoryDB";
+
 var mysql = require('mysql2');
 var data =  require('../../credentials.json');
 const { TaxAccess } = require('./ModelAccess/TaxAccess');
@@ -108,8 +111,9 @@ var myData = (function() {
 myData.getInstance();
 
 const tax:TaxDB = new TaxAccess(myData.getPool())
+const category:StockCategoryDB = new StockCategoryAccess(myData.getPool())
 
-module.exports = {myData,tax}
+module.exports = {myData,tax,category}
 
 
 
