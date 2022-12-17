@@ -1,4 +1,3 @@
-//import Pool from "mysql2/typings/mysql/lib/Pool";
 //@ts-nocheck
 
 import {Pool} from "mysql2/promise";

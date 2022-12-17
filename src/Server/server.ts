@@ -1,5 +1,7 @@
 //@ts-nocheck
 
+import { StockCategoryDB } from "./Data_Access/ModelDBs/StockCategoryDB";
+
 const express = require("express");
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -10,6 +12,7 @@ const path = require('path');
 
 var DataAccess = new data.myData.getInstance();
 const tax:TaxDB = data.tax;
+const category:StockCategoryDB = data.category;
 
 app.get("/api", (req, res) => {
     res.json({ message: "Hello from server!"});
@@ -27,6 +30,24 @@ app.get("/api/tax", (req, res) => {
 //TODO: temporary test route
 app.get("/api/tax/:taxID", (req, res) => {
     tax.findByCode(req.params.taxID).then((result) => {
+        res.json({result})
+    }).catch(function(error) {
+        res.status(400).send("Error...")
+    });
+})
+
+//TODO: temporary test route
+app.get("/api/category", (req, res) => {
+    category.findAllCategories().then((result) => {
+        res.json({result})
+    }).catch(function(error) {
+        res.status(400).send("Error...")
+    });
+});
+
+//TODO: temporary test route
+app.get("/api/category/:categoryID", (req, res) => {
+    category.findByID(req.params.categoryID).then((result) => {
         res.json({result})
     }).catch(function(error) {
         res.status(400).send("Error...")
