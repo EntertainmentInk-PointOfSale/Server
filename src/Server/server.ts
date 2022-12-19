@@ -1,29 +1,29 @@
 //@ts-nocheck
 
 import { StockCategoryDB } from "./Data_Access/ModelDBs/StockCategoryDB";
+import { LogManager } from './LogManager';
 
 const express = require("express");
 const PORT = process.env.PORT || 3001;
 const app = express();
 const data = require('./Data_Access/data')
-const path = require('path');
-const bunyan = require('bunyan')
 
 //Data Initalization
-
+var logger: Logger = new LogManager().getLogger();
 var DataAccess = new data.myData.getInstance();
 const tax:TaxDB = data.tax;
 const category:StockCategoryDB = data.category;
 
+/*
 app.use(require('express-bunyan-logger')({
-    name: 'logger',
+    name: 'route-logger',
     format: ":remote-address - :user-agent[major] custom logger",
     streams: [{
         level: 'info',
         stream: process.stdout
     }]
   }));
-
+*/
 app.get("/api", (req, res) => {
     res.json({ message: "Hello from server!"});
 });

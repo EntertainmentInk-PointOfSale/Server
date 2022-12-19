@@ -2,7 +2,8 @@
 
 import {Pool} from "mysql2/promise";
 import {IStockCategory} from "../Models/StockCategoryModel"
-
+import { LogManager } from "../../LogManager";
+var logger: Logger = new LogManager().getLogger();
 
 export class StockCategoryAccess {
     pool: Pool;
@@ -12,6 +13,7 @@ export class StockCategoryAccess {
     }
 
     findAllCategories(): Promise<IStockCategory[]> {
+        logger.info("Find All")
         return new Promise<IStockCategory[]>((resolve,reject) => {
             this.pool.query<IStockCategory[]>(`SELECT * FROM stock_category`, (err,res) => {
                 if(err) reject(err);
