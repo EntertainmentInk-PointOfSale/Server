@@ -11,3 +11,4 @@ Back End Tech Stacl:
 - ExpressJS
 - TypeScript
 - MySQL
+- Bunyan (Logger)
