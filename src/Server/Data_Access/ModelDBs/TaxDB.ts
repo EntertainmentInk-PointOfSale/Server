@@ -1,4 +1,4 @@
-import { ITax } from "../Models/tax_model";
+import { ITax } from "../Models/TaxModel";
 
 export interface TaxDB {
     findAllCodes() : Promise<ITax[]>;

@@ -1,7 +1,7 @@
 //@ts-nocheck
 
 import {Pool} from "mysql2/promise";
-import { ITax } from "../Models/tax_model";
+import { ITax } from "../Models/TaxModel";
 
 
 export class TaxAccess {
