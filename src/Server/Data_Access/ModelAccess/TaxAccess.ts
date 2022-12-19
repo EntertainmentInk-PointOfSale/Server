@@ -2,6 +2,8 @@
 
 import {Pool} from "mysql2/promise";
 import { ITax } from "../Models/TaxModel";
+import { LogManager } from "../../LogManager";
+var logger: Logger = new LogManager().getLogger();
 
 
 export class TaxAccess {
