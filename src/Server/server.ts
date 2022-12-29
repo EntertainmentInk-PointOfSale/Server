@@ -1,19 +1,29 @@
 //@ts-nocheck
 
 import { StockCategoryDB } from "./Data_Access/ModelDBs/StockCategoryDB";
+import { LogManager } from './LogManager';
 
 const express = require("express");
 const PORT = process.env.PORT || 3001;
 const app = express();
 const data = require('./Data_Access/data')
-const path = require('path');
 
 //Data Initalization
-
+var logger: Logger = new LogManager().getLogger();
 var DataAccess = new data.myData.getInstance();
 const tax:TaxDB = data.tax;
 const category:StockCategoryDB = data.category;
 
+/*
+app.use(require('express-bunyan-logger')({
+    name: 'route-logger',
+    format: ":remote-address - :user-agent[major] custom logger",
+    streams: [{
+        level: 'info',
+        stream: process.stdout
+    }]
+  }));
+*/
 app.get("/api", (req, res) => {
     res.json({ message: "Hello from server!"});
 });
@@ -53,15 +63,6 @@ app.get("/api/category/:categoryID", (req, res) => {
         res.status(400).send("Error...")
     });
 })
-
-app.get("/product/:product_id", (req, res) => {
-    
-    res.json({ message: `You got a product with Product ID: + ${req.params.product_id}`});
-});
-
-app.get("/product", (req, res) => {
-    res.sendFile(path.join(__dirname, '../Frontend\\product\\product_entry.html'))
-});
 
 app.listen(PORT,()=> {
     console.log(`Server listening on port ${PORT}`)
