@@ -1,15 +1,17 @@
 {
     "compilerOptions": {
-        "outDir": "./build",
-        "allowJs": true,
+        "incremental": true,
         "target": "es5",
         "lib": ["es6"],
-        "forceConsistentCasingInFileNames": true,
-        "strict": true,
-        "rootDir": "src",
         "module": "CommonJS",
+        "allowJs": true,
+        "sourceMap": true,
+        "strict": true,
+        "moduleResolution": "node",
         "esModuleInterop": true,
-        "noImplicitAny": true,
-        "resolveJsonModule": true
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitAny": false,
+        "resolveJsonModule": true,
     }
 }
