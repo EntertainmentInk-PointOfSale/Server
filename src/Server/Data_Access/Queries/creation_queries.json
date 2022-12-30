@@ -1,7 +1,0 @@
-{
-    "create_db": "CREATE DATABASE IF NOT EXISTS EI_PLACE_DATA",
-    "create_tax": "CREATE TABLE IF NOT EXISTS TAX (tax_code integer NOT NULL, tax_name varchar(255) NOT NULL, tax_rate decimal(10,2) NOT NULL,PRIMARY KEY(tax_code))",
-    "create_stock_category" : "CREATE TABLE IF NOT EXISTS STOCK_CATEGORY (stock_id integer NOT NULL, stock_name varchar(255), PRIMARY KEY (stock_id))",
-    "create_supplier" : "CREATE TABLE IF NOT EXISTS SUPPLIER (supplier_id integer NOT NULL AUTO_INCREMENT, supplier_name varchar(255) NOT NULL, PRIMARY KEY(supplier_id))",
-    "create_stock": "CREATE TABLE IF NOT EXISTS STOCK (stock_code varchar(255) NOT NULL, product_name varchar(255) NOT NULL, SELLING_PRICE decimal(10,2) NOT NULL, purchase_price decimal (10,2), stock_level integer NOT NULL, date_added datetime NOT NULL, stock_category integer NOT NULL, reorder_level integer, unit_cost decimal(10,2), items_unit integer, supplier_id integer, tax_code integer NOT NULL, PRIMARY KEY (stock_code))"
-}   
