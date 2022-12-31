@@ -1,7 +1,11 @@
 {
-    "extends": "../../tsconfig.json",
-    "compilerOptions": {
+   "extends": "../../tsconfig.json",
+   "compilerOptions": {
       "rootDir": "src",
-      "outDir": "out"
-    }
-  }
+      "outDir": "out",
+      "baseUrl": "src",
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "strictPropertyInitialization": false
+   }
+}
