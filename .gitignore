@@ -137,3 +137,4 @@ build/*
 #Server
 packages\server\src\config\db_config.ts
 packages\server\out
+*_config.ts
