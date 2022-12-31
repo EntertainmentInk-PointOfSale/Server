@@ -1,0 +1,32 @@
+Stocking:
+    -> Easy stock invoice
+        -> Prefill information such as supplier etc.
+    -> Better tracking of stock levels and invoices (automatic filing)
+
+Transactions:
+    -> Better support for tax exempt sales
+    -> Better discount/sale support
+    -> Easy hold transactions between sessions
+    -> Automatic debit machine (Is this possible? Check machine documentation)
+    -> Better transaction recall
+    -> Better return system
+
+Opening/Closing:
+    -> Cash sheet for open & close
+        -> Cash count in AM & PM (can check difference)
+        -> Enter Debit/Credit machine totals in PM
+        -> Auto balance
+    -> Create reports from different periods
+
+Products/Stock:
+    -> Create better system to track Dark Age vs EI sales
+    -> Investigate integration with Shopify API for easy online store
+    -> Track "Dead" stock and one off item
+    -> Better support for non-scanable items 
+        -> How to add details and keep it consistent?
+
+UI:
+    -> Resize UI to better fit
+    -> Ability to add/remove commonly used features
+    -> Better paging
+    -> Light/Dark Themes
