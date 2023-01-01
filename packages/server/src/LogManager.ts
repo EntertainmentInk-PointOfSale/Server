@@ -7,8 +7,8 @@ export class LogManager {
     private static logger:Logger;
     
     private static makeLogger() {
-        var path_to_info_log  = __dirname + "/logs/info.log"
-        var path_to_error_log = __dirname + "/logs/error.log"
+        const path_to_info_log  = __dirname + "/logs/info.log"
+        const path_to_error_log = __dirname + "/logs/error.log"
         this.logger = bunyan.createLogger(
             {name:"retail_pos_logger",
             streams: [
