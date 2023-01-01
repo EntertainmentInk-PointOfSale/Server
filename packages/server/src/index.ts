@@ -29,7 +29,7 @@ app.get("/api", (req, res) => {
 
 //TODO: Test route - remove after testing
 app.get("/api/tax", (req,res) => {
-    taxRepository.find().then(function(results) {
+    TaxRepository.find().then(function(results) {
         res.json(results)
     })
 })
