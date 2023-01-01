@@ -3,12 +3,11 @@
 import { LogManager } from './LogManager';
 import { AppDataSource } from "./data-source"
 import { Tax } from './entity/Tax';
+import {TaxRepository} from './repository/TaxRepository'
 import "reflect-metadata"
 
 const express = require('express');
-const taxRepository = AppDataSource.getRepository(Tax);
-
-var logger: Logger = LogManager.getLogger();
+const logger: Logger = LogManager.getLogger();
 
 //Data Initalization
 AppDataSource
@@ -37,10 +36,10 @@ app.get("/api/tax", (req,res) => {
 
 //TODO: Test route - remove after testing
 app.get("/api/tax/:taxid", (req,res) => {
-    taxRepository.findOneBy({
-        tax_code: req.params.taxid
-    }).then(function(results) {
-        res.json(results);
+    TaxRepository.findByCode(
+        req.params.taxid)
+        .then(function(results) {
+            res.json(results);
     })   
 })
 
