@@ -1,21 +1,34 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Customer {
-    @PrimaryColumn()
+    //Identifying
+    @PrimaryGeneratedColumn()
     Customer_ID: number;
 
+    @Column()
+    First_Name: string;
+ 
+    @Column()
+    Last_Name: string;
+
+    //State
+    @Column()
+    Active: boolean;
+
+    @Column()
+    Tax_Exempt: boolean;
+
+    //Contact
     @Column()
     Phone: string;
 
     @Column()
-    State: number;
+    Email: string;
 
+    //Additional Fields
     @Column()
     Join_Date: string;
-
-    @Column()
-    Tax_Exempt: boolean;
 
     @Column()
     Tax_Exempt_Number: string;
