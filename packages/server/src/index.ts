@@ -4,8 +4,10 @@ import { LogManager } from './LogManager';
 import { AppDataSource } from "./data-source"
 import { Tax } from './entity/Tax';
 import {TaxRepository} from './repository/TaxRepository'
+
 import "reflect-metadata"
 
+const routes = require('./routes/index')
 const express = require('express');
 const logger: Logger = LogManager.getLogger();
 
@@ -23,10 +25,13 @@ AppDataSource
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+app.use('/api', routes)
+
 app.get("/api", (req, res) => {
     res.json({ message: "Hello from server!"});
 });
 
+/*
 //TODO: Test route - remove after testing
 app.get("/api/tax", (req,res) => {
     TaxRepository.find().then(function(results) {
@@ -42,6 +47,7 @@ app.get("/api/tax/:taxid", (req,res) => {
             res.json(results);
     })   
 })
+*/
 
 
 app.listen(PORT,()=> {
