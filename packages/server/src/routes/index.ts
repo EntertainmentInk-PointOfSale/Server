@@ -7,6 +7,7 @@ const paymentmade   = require('./PaymentMadeRouter')
 const paymentmethod = require('./PaymentMethodRouter')
 const transaction   = require('./TransactionRouter')
 const customer      = require('./CustomerRouter')
+
 router.get('/', (req,res) => {
     res.status(200).json({ message: 'Connected'})
 })

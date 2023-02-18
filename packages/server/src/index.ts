@@ -27,29 +27,6 @@ const app = express();
 
 app.use('/api', routes)
 
-app.get("/api", (req, res) => {
-    res.json({ message: "Hello from server!"});
-});
-
-/*
-//TODO: Test route - remove after testing
-app.get("/api/tax", (req,res) => {
-    TaxRepository.find().then(function(results) {
-        res.json(results)
-    })
-})
-
-//TODO: Test route - remove after testing
-app.get("/api/tax/:taxid", (req,res) => {
-    TaxRepository.findByCode(
-        req.params.taxid)
-        .then(function(results) {
-            res.json(results);
-    })   
-})
-*/
-
-
 app.listen(PORT,()=> {
     console.log(`Server listening on port ${PORT}`)
 });

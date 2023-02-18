@@ -7,4 +7,9 @@ export const TaxRepository  = AppDataSource.getRepository(Tax).extend({
             .where("tax.tax_code = :taxCode", {taxCode})
             .getOne()
     },
+
+    findAll() {
+        return this.createQueryBuilder("tax")
+            .getMany()
+    }
 });
