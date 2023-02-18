@@ -21,3 +21,19 @@ export const addDefaults:RequestHandler = (req:Request, res:Response, next:NextF
             res.json(result);
         })
 };
+
+export const findByID:RequestHandler = (req:Request, res:Response, next:NextFunction) => {
+    CustomerRepository.findByID(
+        req.params.customerID
+    ).then(function(result) {
+        res.json(result)
+    })
+}
+
+export const findByName:RequestHandler = (req:Request, res:Response, next:NextFunction) => {
+    CustomerRepository.findByName(
+        req.params.customerName
+    ).then(function(result) {
+        res.json(result)
+    })
+}

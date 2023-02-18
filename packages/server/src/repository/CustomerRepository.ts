@@ -1,16 +1,19 @@
 import { AppDataSource } from "../data-source"
 import {Customer} from "../entity/Customer"
+import { ILike } from "typeorm";
 
 export const CustomerRepository  = AppDataSource.getRepository(Customer).extend({
-    findByCode(customerID: number) {
+    findByID(customerID: number) {
         return this.createQueryBuilder("customer")
-            .where("customer.Customer_ID = :customerID", {customerID})
+            .where("customer.ID = :customerID", {customerID})
             .getOne()
     },
 
     findByName(customerName: string) {
-        return this.createQueryBuilder("customer")
-            .where("customer.First_Name = :customerName", {customerName})
-            .getMany()
+        return this.find({
+            where: {
+                Name: ILike(`%${customerName}%`)
+            }
+        })
     }
 });
