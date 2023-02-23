@@ -5,8 +5,10 @@ import { AppDataSource } from "./data-source"
 import { Tax } from './entity/Tax';
 import {TaxRepository} from './repository/TaxRepository'
 
+
 import "reflect-metadata"
 
+const cors = require('cors')
 const routes = require('./routes/index')
 const express = require('express');
 const logger: Logger = LogManager.getLogger();
@@ -24,6 +26,8 @@ AppDataSource
 //Start Express server
 const PORT = process.env.PORT || 3001;
 const app = express();
+
+app.use(cors())
 
 app.use('/api', routes)
 

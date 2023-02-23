@@ -7,12 +7,13 @@
     "packages\\client"
   ],
   "dependencies": {
-    "typescript": "^4.9.4",
-    "bunyan": "^1.8.15"
+    "bunyan": "^1.8.15",
+    "cors": "^2.8.5",
+    "typescript": "^4.9.4"
   },
   "devDependencies": {
-    "@types/node": "^18.11.15",
     "@types/bunyan": "^1.8.8",
+    "@types/node": "^18.11.15",
     "nodemon": "^2.0.20",
     "ts-node": "^10.9.1"
   },
