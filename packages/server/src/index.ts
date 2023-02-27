@@ -11,6 +11,7 @@ import "reflect-metadata"
 const cors = require('cors')
 const routes = require('./routes/index')
 const express = require('express');
+const bodyParser = require('body-parser')
 const logger: Logger = LogManager.getLogger();
 
 //Data Initalization
@@ -28,6 +29,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 app.use(cors())
+app.use(bodyParser.json())
 
 app.use('/api', routes)
 

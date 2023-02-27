@@ -1,6 +1,6 @@
 import { CustomerRepository } from "../repository/CustomerRepository"
 import { Request, Response, NextFunction, RequestHandler} from 'express';
-import { Customer } from "entity/Customer";
+import { Customer } from "../entity/Customer";
 
 export const findAll:RequestHandler = (req:Request, res:Response, next:NextFunction) =>  {
     CustomerRepository.find().then(function(results) {
@@ -36,4 +36,22 @@ export const findByName:RequestHandler = (req:Request, res:Response, next:NextFu
     ).then(function(result) {
         res.json(result)
     })
+}
+
+export const updatePersonal:RequestHandler = (req:Request, res:Response, next:NextFunction) => {
+    if(typeof req.body === "undefined") {
+        console.log("Undefined body")
+        return res.send(404,"Undefined Body")
+    }
+
+    CustomerRepository
+        .createQueryBuilder()
+        .update(Customer)
+        .set(req.body)
+        .where("ID = :id", {id: req.params.id})
+        .returning("*")
+        .execute()
+        .then((results) => {
+            res.json(results.raw[0])
+        })
 }
