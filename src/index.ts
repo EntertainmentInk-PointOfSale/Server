@@ -24,11 +24,15 @@ AppDataSource
         console.error("Error initalizing Data:", err)
     });
 
+const corsOptions = {
+    origin: '*'
+}
+
 //Start Express server
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-app.use(cors())
+app.use(cors(corsOptions))
 app.use(bodyParser.json())
 
 app.use('/api', routes)
