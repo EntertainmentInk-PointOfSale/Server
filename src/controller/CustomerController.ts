@@ -1,10 +1,36 @@
 import { CustomerRepository } from "../repository/CustomerRepository"
 import { Request, Response, NextFunction, RequestHandler} from 'express';
 import { Customer } from "../entity/Customer";
+import { ILike } from "typeorm";
 
-export const findAll:RequestHandler = (req:Request, res:Response, next:NextFunction) =>  {
-    CustomerRepository.find().then(function(results) {
-        res.json(results);
+export const findAll:RequestHandler = async(req:Request, res:Response, next:NextFunction) =>  {
+    if(Object.keys(req.query).length === 0) {
+        const results = await CustomerRepository.find();
+        return res.json(results);
+    }
+
+    const query = {}
+
+    //Map query parameters to cased Keys
+    for (let [key, value] of Object.entries(req.query)) {
+        switch(key) {
+            case 'id':
+                query['ID'] = value;
+                break;
+            case 'name':
+                query['Name'] = ILike(`%${value}%`);
+                break;
+            case 'join_date':
+                query['Join_Date'] = value;
+                break;
+        }
+    }
+
+    CustomerRepository.find({
+        where: query
+    })
+    .then(function(results) {
+        return res.json(results);
     })
 };
 
