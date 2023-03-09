@@ -37,6 +37,10 @@ app.use(bodyParser.json())
 
 app.use('/api', routes)
 
-app.listen(PORT,()=> {
-    console.log(`Server listening on port ${PORT}`)
-});
+app.listen(PORT, 'localhost', () => {
+    `Server listening on port ${PORT}`
+})
+
+// app.listen(PORT,()=> {
+//     console.log(`Server listening on port ${PORT}`)
+// });
