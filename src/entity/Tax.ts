@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryColumn, OneToMany } from "typeorm"
-import { DecimalTransformer } from "./DecimalTransformer";
+import { DecimalTransformer } from "./Util/DecimalTransformer";
 import { Product } from "./Product";
 
 @Entity()

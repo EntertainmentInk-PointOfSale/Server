@@ -1,10 +1,7 @@
 //@ts-nocheck
 
 import { LogManager } from './LogManager';
-import { AppDataSource } from "./data-source"
-import { Tax } from './entity/Tax';
-import {TaxRepository} from './repository/TaxRepository'
-
+import { DataSourceStarted } from './data-source';
 
 import "reflect-metadata"
 
@@ -12,18 +9,6 @@ const cors = require('cors')
 const routes = require('./routes/index')
 const express = require('express');
 const bodyParser = require('body-parser')
-const logger: Logger = LogManager.getLogger();
-
-//Data Initalization
-AppDataSource
-    .initialize()
-    .then(() => {
-        console.log("Data Source Initalized")
-    })
-    .catch((err) => {
-        console.error("Error initalizing Data:", err)
-    });
-
 const corsOptions = {
     origin: '*'
 }
@@ -32,15 +17,16 @@ const corsOptions = {
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+//Use cors
 app.use(cors(corsOptions))
-app.use(bodyParser.json())
 
+//Parse JSON
+app.use(bodyParser.json())
 app.use('/api', routes)
 
-app.listen(PORT, 'localhost', () => {
-    `Server listening on port ${PORT}`
+//Let any dependant code load before starting server
+Promise.all([DataSourceStarted]).then(() => {
+    app.listen(PORT, () => {
+        console.log(`Server listening on port ${PORT}`);
+    })
 })
-
-// app.listen(PORT,()=> {
-//     console.log(`Server listening on port ${PORT}`)
-// });
