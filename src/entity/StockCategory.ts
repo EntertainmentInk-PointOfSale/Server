@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryColumn } from "typeorm"
+import { Entity, Column, PrimaryColumn, OneToMany } from "typeorm"
+import { Product } from "./Product";
 
 @Entity()
 export class StockCategory {
@@ -8,4 +9,6 @@ export class StockCategory {
     @Column()
     stock_name: string;
 
+    @OneToMany(() => Product, (product) => product.stock_category)
+    products: Product[];
 }
