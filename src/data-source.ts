@@ -1,6 +1,9 @@
+import { Tax } from "./entity/Tax";
+import { Product } from "./entity/Product";
 import "reflect-metadata"
 import { DataSource } from "typeorm"
 import db_config from "./config/db_config"
+import load_defaults from "./data/populate";
 
 //Create data source
 export const AppDataSource = new DataSource({
@@ -12,18 +15,21 @@ export const AppDataSource = new DataSource({
     database: db_config.database,
     synchronize: true,
     logging: false,
-    entities: ["./entity/*.ts"],
+    entities: ["src/entity/*.ts"],
     migrations: [],
     subscribers: [],
 })
 
 export const DataSourceStarted = AppDataSource
     .initialize()
-    .then(() => {
+    .then((res) => {
         console.log("Data Source Initalized")
+
+        console.log("Preloading data...")
+        load_defaults();
     })
     .catch((err) => {
-        console.error("Error initalizing Data:", err)
+        console.error("Error initalizing Data:\n", err)
     });
 
 export default AppDataSource;
