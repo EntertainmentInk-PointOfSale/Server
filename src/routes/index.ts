@@ -7,6 +7,7 @@ const taxcategory   = require('./TaxRouter')
 const paymentmade   = require('./PaymentMadeRouter')
 const paymentmethod = require('./PaymentMethodRouter')
 const transaction   = require('./TransactionRouter')
+const product       = require('./ProductRouter')
 const customer      = require('./CustomerRouter')
 const logger = LogManager.getLogger();
 
@@ -26,6 +27,6 @@ router.use('/payment',       paymentmade)
 router.use('/method',        paymentmethod)
 router.use('/customer',      customer)
 router.use('/transaction',   transaction)
-
+router.use('/product',       product)
 
 module.exports = router

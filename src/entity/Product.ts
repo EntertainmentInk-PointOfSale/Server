@@ -54,7 +54,9 @@ export class Product {
     last_updated: Date;
 
     //Connections to other tables
-    @ManyToOne(() => Supplier, (supplier) => supplier.products)
+    @ManyToOne(() => Supplier, (supplier) => supplier.products, {
+        eager: false 
+    })
     supplier: Supplier
 
     @ManyToOne(() => Tax, (tax) => tax.products, {

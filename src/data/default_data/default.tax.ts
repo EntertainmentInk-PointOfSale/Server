@@ -1,7 +1,5 @@
-
 import { Tax } from "../../entity/Tax";
 import { AppDataSource } from "../../data-source"
-import { DataSource } from "typeorm";
 
 const tax_codes = [
     {
