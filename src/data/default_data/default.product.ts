@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Product } from "../../entity/Product";
 import { AppDataSource } from "../../data-source"
 
@@ -18,6 +19,14 @@ const sample_product = [
         purchase_price: 4.00,
         stock_level: 10,
         tax_applied: 1
+    },
+    {
+        lookup_code:  "146701203",
+        product_name: "All my Data #420",
+        selling_price: 119.99,
+        purchase_price: 4.00,
+        stock_level: 10,
+        tax_applied: 0
     },
 ]
 
