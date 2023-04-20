@@ -1,16 +1,29 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { 
+    Column, 
+    Entity, 
+    ManyToOne, 
+    PrimaryColumn,
+} from "typeorm";
+import { PaymentMethod } from "./PaymentMethod";
+import { Transaction } from "./Transaction";
 
 @Entity()
 export class PaymentMade {
     @PrimaryColumn()
-    Payment_ID: number;
+    ID: number;
 
-    @Column()
-    Transaction_ID: number;
+    //Associated Transaction
+    @ManyToOne(() => Transaction)
+    Trans_Ref: number;
 
-    @Column()
-    Method_ID: number;
+    //How it was paid for
+    @ManyToOne(() => PaymentMethod)
+    Method: PaymentMethod;
 
-    @Column()
+    @Column("numeric", {
+        precision: 12,
+        scale: 2,
+        nullable: false
+    })
     Amount: number;
 }

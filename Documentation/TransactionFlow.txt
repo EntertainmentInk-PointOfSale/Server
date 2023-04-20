@@ -1,0 +1,19 @@
+-> Enter product code in field
+
+-> If in DATABASE then:
+
+    -> Load new "SaleItem" which is imprint of Product
+
+    -> Allow editing of fields 
+
+    -> Fill in information from available fields
+
+-> If NOT in DATABASE:
+
+    -> Offer ability to make new sellable SaleItem
+
+    -> Fill in information & verify 
+
+    -> Add to transaction
+
+-> Verify purchase method (Card/Cash)
