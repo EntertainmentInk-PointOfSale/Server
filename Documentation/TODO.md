@@ -14,3 +14,8 @@
 - Make base react page for testing products
   - Make sure products can be shown. (Need method to get specific product from DB)
 - Make
+
+# Apr - 20 Update
+- Created Transaction entity and planned out associated data objects
+- Began construction on router to handle transactions
+- Began designing client page to handle transaction
