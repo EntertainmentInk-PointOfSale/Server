@@ -8,6 +8,9 @@ export class SaleItem {
     @PrimaryGeneratedColumn()
     ID: number;
 
+    @Column()
+    lookup_code: string;
+
     @Column({nullable: false})
     Name: string;
 
