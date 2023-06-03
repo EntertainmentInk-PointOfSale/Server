@@ -83,8 +83,6 @@ export const updatePersonal:RequestHandler = (req:Request, res:Response, next:Ne
 }
 
 export const createCustomer:RequestHandler = (req:Request, res:Response, next:NextFunction) => {
-    console.log(req.body)
-
     if(typeof req.body === "undefined") {
         console.log("Undefined body")
         return res.send(404,"Undefined Body")
