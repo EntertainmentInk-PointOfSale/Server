@@ -9,6 +9,7 @@ const paymentmethod = require('./PaymentMethodRouter')
 const transaction   = require('./TransactionRouter')
 const product       = require('./ProductRouter')
 const customer      = require('./CustomerRouter')
+const supplier      = require('./SupplierRouter')
 const logger = LogManager.getLogger();
 
 router.get('/', (req,res) => {
@@ -28,5 +29,6 @@ router.use('/method',        paymentmethod)
 router.use('/customer',      customer)
 router.use('/transaction',   transaction)
 router.use('/product',       product)
+router.use('/supplier',      supplier)
 
 module.exports = router
