@@ -1,9 +1,9 @@
 //@ts-nocheck
+import * as controller from '../controller/StockCategoryController'
+
 const express = require('express')
 const router = express.Router()
 
-router.get('/', (req,res) => {
-    res.send("STOCK CATEGORY ROUTER")
-})
+router.get('/', controller.findAll)
 
 module.exports = router
