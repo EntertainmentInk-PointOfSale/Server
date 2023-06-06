@@ -55,7 +55,7 @@ export class Product {
 
     //Connections to other tables
     @ManyToOne(() => Supplier, (supplier) => supplier.products, {
-        eager: false 
+        eager: true 
     })
     supplier: Supplier
 
@@ -65,6 +65,8 @@ export class Product {
     })
     tax_applied: Tax
 
-    @ManyToOne(() => StockCategory, (stock_cat) => stock_cat.products)
+    @ManyToOne(() => StockCategory, (stock_cat) => stock_cat.products, {
+        eager: true
+    })
     stock_category: StockCategory
 }
