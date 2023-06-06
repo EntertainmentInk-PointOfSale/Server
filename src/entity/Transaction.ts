@@ -1,16 +1,40 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { 
+    Column, 
+    CreateDateColumn, 
+    Entity, 
+    ManyToOne,
+    OneToMany, 
+    PrimaryColumn,
+    ManyToMany,
+    JoinTable
+} from "typeorm";
+
+import { SaleItem } from "./SaleItem";
+import { Customer } from "./Customer";
+import { PaymentMade } from "./PaymentMade";
 
 @Entity()
 export class Transaction {
     @PrimaryColumn()
     Transaction_ID: number;
 
-    @Column()
-    Customer_ID: number;
-
-    @Column()
+    @CreateDateColumn()
     Date: string;
 
+    //Associated customer
+    @ManyToOne(() => Customer)
+    Customer_ID: number;
+
+    //Items
+    @OneToMany(() => SaleItem, (item: SaleItem) => item.Trans_Ref)
+    Items: SaleItem[]
+
+    //Additional information
     @Column()
-    Time: string;
+    Note: string;
+
+    //How it was paid for
+    @ManyToMany(() => PaymentMade)
+    @JoinTable()
+    Payment_Methods: PaymentMade[];
 }

@@ -81,3 +81,22 @@ export const updatePersonal:RequestHandler = (req:Request, res:Response, next:Ne
             res.json(results.raw[0])
         })
 }
+
+export const createCustomer:RequestHandler = (req:Request, res:Response, next:NextFunction) => {
+    if(typeof req.body === "undefined") {
+        console.log("Undefined body")
+        return res.send(404,"Undefined Body")
+    }
+
+    const new_customer = CustomerRepository.create({
+        Name: req.body.name,
+        Phone: req.body.phone,
+        Email: req.body.email,
+        Active: true,
+        Tax_Exempt: req.body.tax_exempt,
+        Note: req.body.note
+    }); 
+    CustomerRepository.save(new_customer).then(function(result) {
+        res.json(result.ID);
+    })
+}

@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryColumn } from "typeorm"
-import { DecimalTransformer } from "./DecimalTransformer";
+import { Entity, Column, PrimaryColumn, OneToMany } from "typeorm"
+import { DecimalTransformer } from "./Util/DecimalTransformer";
+import { Product } from "./Product";
 
 @Entity()
 export class Tax {
@@ -9,12 +10,13 @@ export class Tax {
     @Column()
     tax_name: string;
 
-    @Column({ 
-        name: 'amount', 
-        type: 'decimal', 
+    @Column("numeric", { 
         precision: 3, 
         scale: 2, 
-        default: 0.00,
-        transformer: new DecimalTransformer()})
+        default: 0.00
+    })
     amount: number;
+
+    @OneToMany(() => Product, (product) => product.tax_applied, )
+    products: Product[];
 }

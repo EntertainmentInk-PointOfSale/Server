@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryColumn } from "typeorm"
+import { Entity, Column, PrimaryColumn, ManyToOne, OneToMany } from "typeorm"
+import { Product } from "./Product";
 
 @Entity()
 export class Supplier {
@@ -10,4 +11,8 @@ export class Supplier {
 
     @Column()
     phone: string;
+
+    @OneToMany(() => Product, (product) => product.supplier)
+    products: Product[];
+
 }
