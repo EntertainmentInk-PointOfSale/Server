@@ -10,7 +10,8 @@ const sample_product = [
         purchase_price: 4.00,
         stock_level: 1,
         tax_applied: 2,
-        supplier: 0
+        supplier: 0,
+        stock_category: 2,
     },
     {
         lookup_code:  "987654321",
@@ -18,7 +19,9 @@ const sample_product = [
         selling_price: 119.99,
         purchase_price: 4.00,
         stock_level: 10,
-        tax_applied: 1
+        tax_applied: 1,
+        supplier: 0,
+        stock_category: 1
     },
     {
         lookup_code:  "146701203",
@@ -26,7 +29,9 @@ const sample_product = [
         selling_price: 119.99,
         purchase_price: 4.00,
         stock_level: 10,
-        tax_applied: 0
+        tax_applied: 0,
+        supplier: 0,
+        stock_category: 1
     },
 ]
 

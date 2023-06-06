@@ -14,6 +14,15 @@ export const findByCode:RequestHandler = async (req:Request, res:Response, next:
     res.json(product)
 }
 
+export const findByID:RequestHandler = async (req:Request, res:Response, next:NextFunction) => {
+    const product = await ProductRepository.findOne({
+        where: {
+            product_id: req.params.id
+        }
+    })
+    res.json(product)
+}
+
 export const addProduct:RequestHandler = async (req:Request, res:Response, next:NextFunction) => {
     if(typeof req.body === "undefined") {
         console.log("Undefined body")
