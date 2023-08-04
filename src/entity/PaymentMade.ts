@@ -1,8 +1,10 @@
 import { 
     Column, 
     Entity, 
+    JoinColumn, 
     ManyToOne, 
     PrimaryColumn,
+    OneToOne
 } from "typeorm";
 import { PaymentMethod } from "./PaymentMethod";
 import { Transaction } from "./Transaction";
@@ -10,20 +12,22 @@ import { Transaction } from "./Transaction";
 @Entity()
 export class PaymentMade {
     @PrimaryColumn()
-    ID: number;
-
-    //Associated Transaction
-    @ManyToOne(() => Transaction)
-    Trans_Ref: number;
-
-    //How it was paid for
-    @ManyToOne(() => PaymentMethod)
-    Method: PaymentMethod;
+    id: number;
 
     @Column("numeric", {
         precision: 12,
         scale: 2,
         nullable: false
     })
-    Amount: number;
+    amount: number;
+
+    //Associated Transaction
+    @ManyToOne(() => Transaction)
+    @JoinColumn()
+    transaction: Transaction;
+
+    //How it was paid for
+    @OneToOne(() => PaymentMethod)
+    @JoinColumn()
+    PaymentMethod: PaymentMethod;
 }

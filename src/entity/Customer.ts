@@ -1,43 +1,44 @@
-import { BeforeInsert, Column, CreateDateColumn, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 import { 
     IsEmail
 } from "class-validator"
+import { Transaction } from "./Transaction";
 
 @Entity()
 export class Customer {
-    //Identifying parameter
     @PrimaryGeneratedColumn()
-    ID: number;
+    id: number;
 
-    //Customer Name
     @Column({ type: "varchar", })
-    Name: string;
+    name: string;
 
-    //Is the customer ACTIVE
     @Column()
-    Active: boolean;
+    active: boolean;
 
     //Phone number - what kind of validators do I need?
     @Column()
-    Phone: string;
+    phone: string;
 
     //E-mail address - what kind of validators do I need?
     @Column()
     @IsEmail()
-    Email: string;
+    email: string;
 
-    //When did the customer join
     @CreateDateColumn()
-    Join_Date: Date;
+    join_Date: Date;
 
-    //Apply tax exempt status
     @Column()
-    Tax_Exempt: boolean;
+    tax_exempt: boolean;
 
-    //IF tax exempt what is their status card
     @Column({nullable: true})
-    Tax_Exempt_Number: string;
+    tax_exempt_number: string;
 
     @Column({type: "varchar", default:""})
-    Note: string;
+    note: string;
+
+    @Column({default: true})
+    editable: boolean;
+
+    @OneToMany(() => Transaction, (transaction: Transaction) => transaction.customer)
+    transactions: Transaction[]
 }

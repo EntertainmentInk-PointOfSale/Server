@@ -4,17 +4,19 @@ import { Entity,
     PrimaryGeneratedColumn, 
     ManyToOne, 
     CreateDateColumn,
-    UpdateDateColumn} from "typeorm";
+    UpdateDateColumn,
+    OneToMany} from "typeorm";
 import { StockCategory } from "./StockCategory";
 import { Tax } from "./Tax";
 import { Supplier } from "./Supplier";
+import { SaleItem } from "./SaleItem";
 
 
 @Entity()
 export class Product {
     //Product ID
     @PrimaryGeneratedColumn()
-    product_id: number;
+    id: number;
 
     //Look up code - UPC or otherwise
     @Column({ unique: true })
@@ -45,15 +47,13 @@ export class Product {
     })
     stock_level: number;   
     
-    //Date product was entered
     @CreateDateColumn()
     creation_date: Date;
 
-    //Date product was updated
     @UpdateDateColumn()
     last_updated: Date;
 
-    //Connections to other tables
+    // Relations
     @ManyToOne(() => Supplier, (supplier) => supplier.products, {
         eager: true 
     })
@@ -69,4 +69,7 @@ export class Product {
         eager: true
     })
     stock_category: StockCategory
+
+    @OneToMany(() => SaleItem, (sale_item:SaleItem) => sale_item.product)
+    products_sold: SaleItem[]
 }

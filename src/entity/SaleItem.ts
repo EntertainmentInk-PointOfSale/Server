@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Transaction } from "./Transaction";
 import { Product } from "./Product";
 import { Tax } from "./Tax";
@@ -6,7 +6,7 @@ import { Tax } from "./Tax";
 @Entity()
 export class SaleItem {
     @PrimaryGeneratedColumn()
-    ID: number;
+    id: number;
 
     @Column()
     lookup_code: string;
@@ -14,21 +14,13 @@ export class SaleItem {
     @Column({nullable: false})
     Name: string;
 
-    @ManyToOne(() => Transaction, (transaction:Transaction) => transaction.Items)
-    Trans_Ref: Transaction
-
-    @OneToOne(() => Product, {nullable: true})
-    Product_Ref: Product
-
+    // Numerics
     @Column("numeric", {
         precision: 12,
         scale: 2,
         nullable: false
     })
     Sale_Price: number;
-
-    @OneToOne(() => Tax, {nullable: false})
-    Tax_Applied: Tax;
 
     @Column("numeric", {
         precision: 12,
@@ -50,4 +42,15 @@ export class SaleItem {
         default: ""
     })
     Discount_Reason: string;
+
+    // Relations
+    @OneToOne(() => Tax, {nullable: false})
+    @JoinColumn()
+    Tax_Applied: Tax;
+
+    @ManyToOne(() => Transaction, (transaction:Transaction) => transaction.items_sold)
+    transaction: Transaction
+
+    @ManyToOne(() => Product, (product:Product) => product.products_sold, {nullable: true})
+    product: Product
 }
