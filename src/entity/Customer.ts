@@ -39,6 +39,9 @@ export class Customer {
     @Column({default: true})
     editable: boolean;
 
+    @Column({default: false})
+    isStoreUser: boolean;
+
     @OneToMany(() => Transaction, (transaction: Transaction) => transaction.customer)
     transactions: Transaction[]
 }
