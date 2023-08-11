@@ -100,3 +100,13 @@ export const createCustomer:RequestHandler = (req:Request, res:Response, next:Ne
         res.json(result.id);
     })
 }
+
+export const findStoreCustomer:RequestHandler = (req:Request, res:Response, next:NextFunction) => {
+    CustomerRepository.find({
+        where: {
+            isStoreUser: true
+        }
+    }).then(function(result) {
+        res.json(result)
+    })
+}
