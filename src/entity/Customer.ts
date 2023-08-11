@@ -9,6 +9,9 @@ export class Customer {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Column({nullable: true, unique: true})
+    lookup_code: string;
+
     @Column({ type: "varchar", })
     name: string;
 

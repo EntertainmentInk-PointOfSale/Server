@@ -4,10 +4,17 @@ import { AppDataSource } from "../../data-source"
 
 const sample_customers = [
 
+    {
+        name: "test",
+        active: true,
+        phone: "1234567890",
+        email: "cmcallmacleod@gmail.com"
+    }
 ]
 
 const required_customers = [
     {
+        lookup_code: '1',
         name: "Store",
         active: true,
         phone: "6138415531",
@@ -20,5 +27,5 @@ const required_customers = [
 ]
 
 export async function populate_default_customers() {
-    await AppDataSource.manager.upsert(Customer, required_customers, ["id"])
+    await AppDataSource.manager.upsert(Customer, required_customers, ["lookup_code"])
 }
