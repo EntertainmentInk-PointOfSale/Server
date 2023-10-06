@@ -17,7 +17,7 @@ export const findByCode:RequestHandler = async (req:Request, res:Response, next:
 export const findByID:RequestHandler = async (req:Request, res:Response, next:NextFunction) => {
     const product = await ProductRepository.findOne({
         where: {
-            product_id: req.params.id
+            id: req.params.id
         }
     })
     res.json(product)
@@ -43,6 +43,6 @@ export const addProduct:RequestHandler = async (req:Request, res:Response, next:
     })
 
     ProductRepository.save(new_product).then((result) => {
-        res.json(result.product_id)
+        res.json(result.id)
     })
 }

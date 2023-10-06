@@ -6,7 +6,8 @@ import {
     OneToMany, 
     PrimaryColumn,
     ManyToMany,
-    JoinTable
+    JoinTable,
+    JoinColumn
 } from "typeorm";
 
 import { SaleItem } from "./SaleItem";
@@ -16,25 +17,49 @@ import { PaymentMade } from "./PaymentMade";
 @Entity()
 export class Transaction {
     @PrimaryColumn()
-    Transaction_ID: number;
+    id: number;
 
     @CreateDateColumn()
     Date: string;
 
-    //Associated customer
-    @ManyToOne(() => Customer)
-    Customer_ID: number;
-
-    //Items
-    @OneToMany(() => SaleItem, (item: SaleItem) => item.Trans_Ref)
-    Items: SaleItem[]
-
-    //Additional information
     @Column()
-    Note: string;
+    note: string;
 
-    //How it was paid for
-    @ManyToMany(() => PaymentMade)
-    @JoinTable()
-    Payment_Methods: PaymentMade[];
+    // Totals
+    @Column("numeric", {
+        precision: 12,
+        scale: 2
+    })
+    sub_total: number;
+
+    @Column("numeric", {
+        precision: 12,
+        scale: 2
+    })
+    tax_balance: number;
+
+    @Column("numeric", {
+        precision: 12,
+        scale: 2,
+        default: 0.00
+    })
+    discount_totals: number;
+
+    @Column("numeric", {
+        precision: 12,
+        scale: 2,
+        default: 0.00
+    })
+    refunds_total: number;
+
+    // Relations
+    @ManyToOne(() => Customer)
+    @JoinColumn()
+    customer: Customer;
+
+    @OneToMany(() => SaleItem, (item: SaleItem) => item.transaction)
+    items_sold: SaleItem[]
+
+    @OneToMany(() => PaymentMade, (payment: PaymentMade) => payment.transaction)
+    payments_made: PaymentMade[];
 }

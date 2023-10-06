@@ -6,4 +6,8 @@ router.get('/', (req,res) => {
     res.send("TRANSACTION ROUTER")
 })
 
+router.post('/', (req, res) => {
+    
+})
+
 module.exports = router

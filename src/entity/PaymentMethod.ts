@@ -3,8 +3,8 @@ import { Column, Entity, PrimaryColumn } from "typeorm";
 @Entity()
 export class PaymentMethod {
     @PrimaryColumn()
-    Method_ID: number;
+    id: number;
 
     @Column()
-    Name: string;
+    name: string;
 }

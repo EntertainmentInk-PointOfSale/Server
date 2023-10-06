@@ -36,12 +36,12 @@ export const findAll:RequestHandler = async(req:Request, res:Response, next:Next
 
 export const addDefaults:RequestHandler = (req:Request, res:Response, next:NextFunction) => {
         const new_customer = CustomerRepository.create({
-            Name: `FirstName1 LastName1`,
-            Phone: "1234567890",
-            Email: `test@testemail.com`,
-            Active: true,
-            Tax_Exempt: false,
-            Note: "Randomly Generated Customer"
+            name: `FirstName1 LastName1`,
+            phone: "1234567890",
+            email: `test@testemail.com`,
+            active: true,
+            tax_exempt: false,
+            note: "Randomly Generated Customer"
         }); 
         CustomerRepository.save(new_customer).then(function(result) {
             res.json(result);
@@ -74,7 +74,7 @@ export const updatePersonal:RequestHandler = (req:Request, res:Response, next:Ne
         .createQueryBuilder()
         .update(Customer)
         .set(req.body)
-        .where("ID = :id", {id: req.params.id})
+        .where("id = :id", {id: req.params.id})
         .returning("*")
         .execute()
         .then((results) => {
@@ -89,14 +89,24 @@ export const createCustomer:RequestHandler = (req:Request, res:Response, next:Ne
     }
 
     const new_customer = CustomerRepository.create({
-        Name: req.body.name,
-        Phone: req.body.phone,
-        Email: req.body.email,
-        Active: true,
-        Tax_Exempt: req.body.tax_exempt,
-        Note: req.body.note
+        name: req.body.name,
+        phone: req.body.phone,
+        email: req.body.email,
+        active: true,
+        tax_exempt: req.body.tax_exempt,
+        note: req.body.note
     }); 
     CustomerRepository.save(new_customer).then(function(result) {
-        res.json(result.ID);
+        res.json(result.id);
+    })
+}
+
+export const findStoreCustomer:RequestHandler = (req:Request, res:Response, next:NextFunction) => {
+    CustomerRepository.find({
+        where: {
+            isStoreUser: true
+        }
+    }).then(function(result) {
+        res.json(result)
     })
 }
