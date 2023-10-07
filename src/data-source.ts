@@ -8,11 +8,11 @@ import load_defaults from "./data/populate";
 //Create data source
 export const AppDataSource = new DataSource({
     type: "postgres",
-    host: "localhost",
+    host: "db",
     port: 5432,
-    username: db_config.postgres_user,
-    password: db_config.postgres_pass,
-    database: db_config.database,
+    username: process.env.POSTGRES_USER,
+    password: process.env.POSTGRES_PASSWORD,
+    database: process.env.POSTGRES_DB,
     synchronize: true,
     logging: true,
     entities: ["src/entity/*.ts"],
